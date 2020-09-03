@@ -1,0 +1,5 @@
+log:
+  config:
+    path: /logs/local
+  filename: local_log
+

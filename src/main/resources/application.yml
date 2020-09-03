@@ -1,0 +1,37 @@
+spring:
+  profiles:
+    active: local-dev # 기본 환경 선택
+
+  datasource:
+    #driverclassname: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    driverclassname: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+
+  hikari: #Hikari 설정
+    maximum-pool-size: 10
+    #connection-test-query: SELECT 1
+
+  jpa: #JPA 설정
+    properties:
+      hibernate: #방언 설정
+      dialect: org.hibernate.dialect.SQLServerDialect
+      #하이버네이트가 실행하는 모든 SQL문을 콘솔로 출력해 준다.
+      show_sql: true
+      #콘솔에 출력되는 JPA 실행 쿼리를 가독성있게 표현한다.
+      format_sql: true
+      #디버깅이 용이하도록 SQL문 이외에 추가적인 정보를 출력해 준다.
+      use_sql_comments: false
+
+# local-dev 환경
+---
+spring:
+  profiles: local-dev
+  datasource:
+    #url: jdbc:sqlserver://atomy.c6enu6jb24ql.ap-northeast-2.rds.amazonaws.com:1433;DatabaseName=ATOMY
+    url: jdbc:log4jdbc:sqlserver://atomy.c6enu6jb24ql.ap-northeast-2.rds.amazonaws.com:1433;DatabaseName=ATOMY
+    hikari:
+      username: lms
+      password: logi6613!$
+
+logging:
+  level:
+    root: info
